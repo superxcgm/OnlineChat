@@ -1,0 +1,107 @@
+*{
+	box-sizing: border-box; /*怪异模式 盒模型*/
+	/* 去掉自带诡异特性 */
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	font-size: 14px;
+}
+html{
+	font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+}
+body{
+	line-height: 25px;
+}
+a{
+	text-decoration: none;
+}
+a, a:focus, a:visited, a:active, a:hover{
+	color: black;
+}
+#body{
+	width: 1280px;
+	margin: 0px auto;
+}
+#header{
+	padding: 0px 20px;
+}
+.banner{
+	width: 100%;
+}
+.banner-text{
+	font-size: 72px;
+	line-height: 82px;
+}
+.center{
+	text-align: center;
+}
+.background-gray{
+	background-color: #EDEDED;
+}
+.background-white{
+	background-color: white;
+}
+.text-warning{
+	color: orange;
+}
+.text-info{
+	padding-bottom: 20px;
+}
+.form-ele{
+	padding: 3px 0px;
+}
+.textbox{
+	border: 1px solid #DCDEE0;
+	vertical-align: middle;
+	padding: 0px 25px;
+	height: 40px;
+	font-size: 16px;
+}
+.textbox-block{
+	width: 100%;
+}
+.round{
+	border-radius: 5px;
+}
+a.link-primary{
+	color: #00a67c;
+}
+a.link-primary:hover{
+	color: #007046;
+}
+.btn{
+	height: 40px;
+	text-align: center;
+	cursor: pointer;
+}
+.btn-primary{
+	color: white;
+	background-color: #16a085;
+	padding:0px 10px;
+}
+.btn-primary:hover{
+	background-color: #096;	
+}
+.btn-block{
+	margin-top: 20px;
+	width: 100%;
+}
+.order .line{
+   display: inline-block;  
+   width: 110px;  
+   border-top: 1px solid #ccc ; 
+}
+.order .txt{
+	color: #686868;  
+   vertical-align: middle; 
+}
+.list-vertical{
+	list-style: none;
+	overflow:hidden;
+}
+.list-vertical li{
+	float: left;
+}
+.box-shadow{
+	box-shadow: 0 0 8px rgba(0,0,0,.1);
+}
