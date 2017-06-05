@@ -30,6 +30,7 @@
 						<input type="password" name="password" class="textbox textbox-block">
 						<i class="fa fa-lock" style="position:absolute; top:13px; left:10px;"></i>
 					</div>
+					<input type="submit" value="登录" class="btn btn-primary btn-block">
 				</form>
 			</div>
 			<div style="padding-bottom: 30px;">
