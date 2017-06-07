@@ -5,8 +5,8 @@
 	<meta charset="UTF-8">
 	<title>登录 - OnlineChat</title>
 	<!-- 网站名使用常量 -->
-	<link rel="stylesheet" type="text/css" href="static/css/xc_basic.css">
-	<link rel="stylesheet" href="static/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/xc_basic.css">
+	<link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body class="background-gray">
 	<header id="header">
@@ -34,8 +34,8 @@
 				</form>
 			</div>
 			<div style="padding-bottom: 30px;">
-				<p><a href="registe.jsp" class="link-primary">&gt; 请从这里注册新帐户</a></p>
-				<p><a href="forgetPwd.jsp" class="link-primary">&gt; 如果您忘记密码 请点这里</a></p>
+				<p><a href="user/registe" class="link-primary">&gt; 请从这里注册新帐户</a></p>
+				<p><a href="user/forgetPwd" class="link-primary">&gt; 如果您忘记密码 请点这里</a></p>
 			</div>
 			<div>
 				<div class="order" style="padding-bottom: 20px;">  
