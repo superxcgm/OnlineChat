@@ -24,7 +24,7 @@ public class XCDatabase
 	public PreparedStatement prepareStatement(String s)
 	{
 		try{
-			return con.prepareStatement(s)
+			return con.prepareStatement(s);
 		}catch(SQLException e){
 			return null;
 		}
@@ -58,7 +58,7 @@ public class XCDatabase
 			try{
 				con.close();	
 			}catch(SQLException e){
-				return null;
+				return false;
 			}
 			con = null;
 			return true;
@@ -70,7 +70,8 @@ public class XCDatabase
         String result = "";
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(sourceStr.getBytes());
+            String salt = "ZwIKEMdRQkMolEnHKxfIMNTG4j1mkYR5";
+            md.update(sourceStr.concat(salt).getBytes());
             byte b[] = md.digest();
             int i;
             StringBuffer buf = new StringBuffer("");
@@ -89,7 +90,6 @@ public class XCDatabase
         } catch (NoSuchAlgorithmException e) {
             return null;
         }
-        return result;
     }
 
 	private Connection con = null;
