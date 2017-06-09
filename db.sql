@@ -8,6 +8,7 @@ CREATE TABLE  `users` (
   `user_pwd` varchar(32) NOT NULL,
   `user_name` varchar(100) NOT NULL,
   `user_nick` varchar(100) NOT NULL DEFAULT '',
+  UNIQUE(user_name),
   PRIMARY KEY (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 

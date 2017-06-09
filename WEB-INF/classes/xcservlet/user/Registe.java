@@ -4,6 +4,7 @@ import java.io.*;
 import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import xcbean.*;
 
 public class Registe extends HttpServlet
 {
@@ -15,10 +16,12 @@ public class Registe extends HttpServlet
 	public void doPost(HttpServletRequest request,
 		HttpServletResponse response) throws IOException, ServletException
 	{
-		// PrintWriter out = response.getWriter();
+		
 		request.setCharacterEncoding("UTF-8"); 
-		response.setCharacterEncoding("utf-8"); 
-		response.setContentType("text/html;charset=UTF-8");	
+		response.setCharacterEncoding("UTF-8"); 
+		response.setContentType("text/html;charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
 
 		HttpSession session = request.getSession(true);
 
@@ -28,38 +31,37 @@ public class Registe extends HttpServlet
 		String email = request.getParameter("email");
 
 		XCUser userRaw = new XCUser(username, password, email, "", 1); /* raw */
+		request.setAttribute("userRaw", userRaw);
 		/* data audit */
 		String strError = Checker.check(username, Checker.CH_LEN | Checker.CH_ALNUM, 6, 20);
 		if(strError != null){
-			session.setAttribute("userRaw", userRaw);
 			pError(request, response, "用户名" + strError);
 			return ;
 		}
 
 		strError = Checker.check(password, Checker.CH_LEN, 6, 20);
 		if(strError != null){
-			session.setAttribute("userRaw", userRaw);
 			pError(request, response, "密码" + strError);
 			return ;
 		}
 
-		if(repassword != password){
-			session.setAttribute("userRaw", userRaw);
+		if(!repassword.equals(password)){
 			pError(request, response, "两次输入的密码必须一致!");
 			return ;
 		}
 
 		strError = Checker.check(email, Checker.CH_MAIL);
 		if(strError != null){
-			session.setAttribute("userRaw", userRaw);
 			pError(request, response, strError);
 			return ;
 		}
 
+		out.print(username + "<br />" + password + "<br />" + email);
 		/* */
-		XCUser xcUser = new XCUser(username, password, email);
-		xcUser.update();
+		// XCUser xcUser = new XCUser(username, password, email);
+		// boolean ans = xcUser.update();
 		/* 注册成功啦！ */
+		// out.print(ans);
 	}
 	public void doGet(HttpServletRequest request,
 		HttpServletResponse response) throws IOException, ServletException
@@ -67,6 +69,10 @@ public class Registe extends HttpServlet
 		request.setCharacterEncoding("UTF-8"); 
 		response.setCharacterEncoding("utf-8"); 
 		response.setContentType("text/html;charset=UTF-8");
+		// HttpSession session = request.getSession(true);
+
+		XCUser userRaw = new XCUser("", "", "", "", 1); /* raw */
+		request.setAttribute("userRaw", userRaw);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/user/registe.jsp");
 		dispatcher.forward(request, response);
@@ -74,6 +80,10 @@ public class Registe extends HttpServlet
 	private void pError(HttpServletRequest request,
 		HttpServletResponse response, String strErr) throws IOException, ServletException
 	{
-		response.sendRedirect("/");
+		// PrintWriter out = response.getWriter();
+		// out.print(strErr);
+		request.setAttribute("strErr", strErr);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/user/registe.jsp");
+		dispatcher.forward(request, response);
 	}
 }

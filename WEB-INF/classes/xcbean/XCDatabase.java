@@ -6,8 +6,20 @@ import java.security.NoSuchAlgorithmException;
 
 public class XCDatabase
 {
+	/* use for test */
+	public static void main(String[] args)
+	{
+		XCDatabase xcdb = new XCDatabase();	
+		xcdb.connect();
+		xcdb.close();
+	}
 	public boolean connect()
 	{
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}catch(Exception e){
+			System.out.println(e);
+		}
 		String uri = "jdbc:mysql://127.0.0.1/onlinechat";
 		String user = "root";
 		String password = "m03s05I32dVix5HDIze9";
@@ -16,7 +28,7 @@ public class XCDatabase
 			con = DriverManager.getConnection(uri, user, password);
 			return true;
 		}catch(Exception e){
-			// System.out.println(e);
+			System.out.println(e);
 			return false;
 		}
 		

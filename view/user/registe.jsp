@@ -1,4 +1,10 @@
 <%@ page contentType="text/html;charset=utf-8" %>
+<%
+	String strErr = (String)request.getAttribute("strErr");
+	if(strErr == null)
+		strErr = "";
+%>
+<jsp:useBean id="userRaw" type="xcbean.XCUser" scope="request" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,17 +25,18 @@
 			<a href="/index.html" class="link-primary">&lt; 已有帐号？ 去登陆</a>
 		</div>
 		<div class="background-white round box-shadow" style="width: 400px; margin: 0px auto; padding: 30px;">
-			<div class="text-warning text-info">可能的提示消息</div>
+			<div class="text-warning text-info"><%= strErr %></div>
 			<div style="padding-bottom: 40px;">
 				<form action="" method="post">
 					<div class="form-ele">用户名</div>
-					<input type="text" name="username" class="textbox textbox-block" placeholder="仅限字母、数字，6-20位">
+					<input type="text" name="username" class="textbox textbox-block" placeholder="仅限字母、数字，6-20位" value=''>
+
 					<div class="form-ele">密码</div>
 					<input type="password" name="password" class="textbox textbox-block" placeholder="6-20位">
 					<div class="form-ele">重复密码</div>
 					<input type="password" name="repassword" class="textbox textbox-block">
 					<div class="form-ele">邮箱</div>
-					<input type="text" name="email" class="textbox textbox-block">
+					<input type="text" name="email" class="textbox textbox-block" value=''>
 					<input type="submit" value="注册" class="btn btn-primary btn-block">
 				</form>
 			</div>

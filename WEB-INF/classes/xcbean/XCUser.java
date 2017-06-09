@@ -3,6 +3,18 @@ import java.sql.*;
 
 public class XCUser extends SingleTable
 {
+	public static void main(String[] args)
+	{
+		XCUser xcUser = new XCUser("superxc", "woaini", "superxc@outlook.com");
+		System.out.println("username:" + xcUser.getUser_name());
+		System.out.println("password:" + xcUser.getUser_pwd());
+		System.out.println("email:" + xcUser.getUser_email());
+		System.out.println("nickName:" + xcUser.getUser_nick());
+		boolean ans = xcUser.update();
+		if(ans == false)
+			System.out.println(xcUser.strErr);
+		System.out.println(ans);
+	}
 	public XCUser()
 	{
 		primaryKey = "user_id";
@@ -12,8 +24,7 @@ public class XCUser extends SingleTable
 	}
 	public XCUser(String aUser_name, String aUser_pwd, String aUser_email)
 	{
-		String nick = "Do not set nickName";
-		this(aUser_name, aUser_pwd, aUser_email, nick);
+		this(aUser_name, aUser_pwd, aUser_email, "Do not set nickName");
 	}
 	public XCUser(String aUser_name, String aUser_pwd, String aUser_email,  String aUser_nick)
 	{
@@ -41,6 +52,7 @@ public class XCUser extends SingleTable
 			return false;
 		xcDatabase.connect();
 		PreparedStatement pst;
+		// System.out.println("user_id:" + user_id);
 		if(user_id == -1){ /* new user */
 			pst = xcDatabase.prepareStatement(String.format("INSERT INTO %s (user_name, user_pwd, user_email, user_nick) VALUES(?, ?, ?, ?)", tableName));
 			try{
@@ -48,16 +60,27 @@ public class XCUser extends SingleTable
 				pst.setString(2, user_pwd);
 				pst.setString(3, user_email);
 				pst.setString(4, user_nick);
-				if(pst.executeUpdate() > 0)
+				int ans = pst.executeUpdate();
+				// System.out.println("ans:" + ans);
+				if(ans > 0){
+					xcDatabase.close();
 					return true;
-				else
+				}else{
+					xcDatabase.close();
 					return false;	
-			}catch(SQLException e){}
+				}
+			}catch(SQLException e){
+				strErr = "用户名已经存在！";
+				// System.out.println(e);
+				xcDatabase.close();
+				return false;
+			}
 		}else{
 			if(dirty){
 				/* update */
 			}else{
 				/* data not dirty, do not need to update*/
+				xcDatabase.close();
 				return true;
 			}
 		}
@@ -94,10 +117,12 @@ public class XCUser extends SingleTable
 	}
 	public void setUser_pwd(String aUser_pwd)
 	{
+		// System.out.println("aUser_pwd:" + aUser_pwd);
 		String tmp = xcDatabase.MD5(aUser_pwd);
+		// System.out.println("tmp:" + tmp);
 		if(!tmp.equals(user_email)){
 			dirty = true;
-			user_email = tmp;	
+			user_pwd = tmp;	
 		}
 	}
 	public String getUser_pwd()
@@ -137,6 +162,5 @@ public class XCUser extends SingleTable
 	private String user_pwd; /* md5 + salt */
 	private String user_name;
 	private String user_nick;
-	private boolean raw = false;
 	private XCDatabase xcDatabase = null;
 }

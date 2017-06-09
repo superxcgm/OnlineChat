@@ -63,6 +63,15 @@
     <url-pattern>/ch7/preparedServlet</url-pattern>
   </servlet-mapping>   -->
 
+  <!-- <servlet>
+    <servlet-name>queryAllServlet</servlet-name>
+    <servlet-class>myservlet.data.Example7_8_Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>queryAllServlet</servlet-name>
+    <url-pattern>/ch7/queryAllServlet</url-pattern>
+  </servlet-mapping>   -->
+
   <!-- OnlineChat -->
   <!-- user -->
   <servlet>
