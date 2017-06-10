@@ -5,20 +5,50 @@ public class XCUser extends SingleTable
 {
 	public static void main(String[] args)
 	{
-		XCUser xcUser = new XCUser("superxc", "woaini", "superxc@outlook.com");
-		System.out.println("username:" + xcUser.getUser_name());
-		System.out.println("password:" + xcUser.getUser_pwd());
-		System.out.println("email:" + xcUser.getUser_email());
-		System.out.println("nickName:" + xcUser.getUser_nick());
-		boolean ans = xcUser.update();
-		if(ans == false)
-			System.out.println(xcUser.strErr);
-		System.out.println(ans);
+		XCUser xcUser= XCUser.find(FIND_BY_NAME, "aslfkjff");
+		if(xcUser == null){
+			System.out.println("User do not found!");
+		}else{
+			System.out.println(xcUser.user_id);
+			System.out.println(xcUser.user_name);
+			System.out.println(xcUser.user_nick);
+			System.out.println(xcUser.user_pwd);
+			System.out.println(xcUser.user_email);
+		}
+	}
+	public static XCUser find(int flag, String aUser_name)
+	{
+		XCUser uAns = null;
+		XCDatabase xcDatabase = new XCDatabase();
+		xcDatabase.connect();
+		PreparedStatement pst;
+		ResultSet rs;
+		switch(flag){
+			case FIND_BY_NAME:
+				try{
+					pst = xcDatabase.prepareStatement(String.format("SELECT user_id, user_name, user_nick, user_pwd, user_email FROM %s WHERE user_name = ?", tableName));
+					pst.setString(1, aUser_name);	
+					rs = pst.executeQuery();
+					if(rs.next()){
+						uAns = new XCUser();
+						uAns.user_id = Integer.parseInt(rs.getString("user_id"));
+						uAns.user_name = rs.getString("user_name");
+						uAns.user_nick = rs.getString("user_nick");
+						uAns.user_pwd = rs.getString("user_pwd");
+						uAns.user_email = rs.getString("user_email");
+					}
+				}catch(SQLException e){
+
+				}
+				break;
+			case FIND_BY_ID:
+				break;
+		}
+		xcDatabase.close();
+		return uAns;
 	}
 	public XCUser()
 	{
-		primaryKey = "user_id";
-		tableName = "users";
 		raw = false;
 		xcDatabase = new XCDatabase();
 	}
@@ -50,6 +80,7 @@ public class XCUser extends SingleTable
 	{
 		if(raw)
 			return false;
+		boolean bAns = false;
 		xcDatabase.connect();
 		PreparedStatement pst;
 		// System.out.println("user_id:" + user_id);
@@ -62,36 +93,34 @@ public class XCUser extends SingleTable
 				pst.setString(4, user_nick);
 				int ans = pst.executeUpdate();
 				// System.out.println("ans:" + ans);
-				if(ans > 0){
-					xcDatabase.close();
-					return true;
-				}else{
-					xcDatabase.close();
-					return false;	
-				}
+				if(ans > 0)
+					bAns = true;
 			}catch(SQLException e){
 				strErr = "用户名已经存在！";
 				// System.out.println(e);
-				xcDatabase.close();
-				return false;
 			}
 		}else{
 			if(dirty){
 				/* update */
 			}else{
 				/* data not dirty, do not need to update*/
-				xcDatabase.close();
-				return true;
+				bAns = true;
 			}
 		}
 		xcDatabase.close();
-		return true;
+		return bAns;
 	}
 	public boolean delete()
 	{
 		if(raw)
 			return false;
 		return true;
+	}
+
+	public boolean checkPwd(String aUser_pwd)
+	{
+		String tmp = xcDatabase.MD5(aUser_pwd);
+		return tmp.equals(user_pwd);
 	}
 
 	/* setter and getter method */
@@ -157,6 +186,18 @@ public class XCUser extends SingleTable
 	{
 		return user_nick;
 	}
+	public void setStrErr(String aStrErr)
+	{
+		strErr = aStrErr;
+	}
+	public String getStrErr()
+	{
+		return strErr;
+	}
+	public static final int FIND_BY_NAME = 1;
+	public static final int FIND_BY_ID = 2;
+	private static final String primaryKey = "user_id";
+	private static final String tableName = "users";
 	private int user_id = -1;
 	private String user_email;
 	private String user_pwd; /* md5 + salt */

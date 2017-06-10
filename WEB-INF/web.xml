@@ -73,6 +73,16 @@
   </servlet-mapping>   -->
 
   <!-- OnlineChat -->
+  <!-- Test -->
+  <servlet>
+    <servlet-name>myTest</servlet-name>
+    <servlet-class>xcservlet.MyTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>myTest</servlet-name>
+    <url-pattern>/myTest</url-pattern>
+  </servlet-mapping>
+
   <!-- user -->
   <servlet>
     <servlet-name>user_login</servlet-name>

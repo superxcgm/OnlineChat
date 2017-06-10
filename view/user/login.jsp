@@ -1,4 +1,10 @@
 <%@ page contentType="text/html;charset=utf-8" %>
+<%
+	String strErr = (String)request.getAttribute("strErr");
+	if(strErr == null)
+		strErr = "";
+%>
+<jsp:useBean id="userRaw" type="xcbean.XCUser" scope="request" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +23,12 @@
 	</div>
 	<div id="body">
 		<div class="background-white round box-shadow" style="width: 400px; margin: 0px auto; padding: 30px;">
-			<div class="text-warning text-info">可能的提示消息</div>
+			<div class="text-warning text-info"><%= strErr %></div>
 			<div style="padding-bottom: 40px;">
-				<form action="#" method="post">
+				<form action="" method="post">
 					<div class="form-ele">用户名／邮箱</div>
 					<div style="position:relative;">
-						<input type="text" name="username" class="textbox textbox-block">
+						<input type="text" name="username" class="textbox textbox-block" value='<jsp:getProperty name="userRaw" property="user_name" />'>
 						<i class="fa fa-user-o" style="position:absolute; top:13px; left:10px;"></i>
 					</div>
 					<div class="form-ele">密码</div>

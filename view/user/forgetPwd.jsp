@@ -1,11 +1,11 @@
-<!-- <%@ page contentType="text/html;charset=utf-8" %> -->
+<%@ page contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>找回密码 - OnlineChat</title>
-	<link rel="stylesheet" type="text/css" href="static/css/xc_basic.css">
-	<link rel="stylesheet" href="static/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/xc_basic.css">
+	<link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body class="background-gray">
 	<header id="header">

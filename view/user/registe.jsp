@@ -29,14 +29,14 @@
 			<div style="padding-bottom: 40px;">
 				<form action="" method="post">
 					<div class="form-ele">用户名</div>
-					<input type="text" name="username" class="textbox textbox-block" placeholder="仅限字母、数字，6-20位" value=''>
+					<input type="text" name="username" class="textbox textbox-block" placeholder="仅限字母、数字，6-20位" value='<jsp:getProperty name="userRaw" property="user_name" />'>
 
 					<div class="form-ele">密码</div>
 					<input type="password" name="password" class="textbox textbox-block" placeholder="6-20位">
 					<div class="form-ele">重复密码</div>
 					<input type="password" name="repassword" class="textbox textbox-block">
 					<div class="form-ele">邮箱</div>
-					<input type="text" name="email" class="textbox textbox-block" value=''>
+					<input type="text" name="email" class="textbox textbox-block" value='<jsp:getProperty name="userRaw" property="user_email" />'>
 					<input type="submit" value="注册" class="btn btn-primary btn-block">
 				</form>
 			</div>
