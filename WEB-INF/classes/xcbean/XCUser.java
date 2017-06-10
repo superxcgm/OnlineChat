@@ -16,7 +16,7 @@ public class XCUser extends SingleTable
 			System.out.println(xcUser.user_email);
 		}
 	}
-	public static XCUser find(int flag, String aUser_name)
+	public static XCUser find(int flag, String arg)
 	{
 		XCUser uAns = null;
 		XCDatabase xcDatabase = new XCDatabase();
@@ -26,12 +26,13 @@ public class XCUser extends SingleTable
 		switch(flag){
 			case FIND_BY_NAME:
 				try{
+					String aUser_name = arg;
 					pst = xcDatabase.prepareStatement(String.format("SELECT user_id, user_name, user_nick, user_pwd, user_email FROM %s WHERE user_name = ?", tableName));
 					pst.setString(1, aUser_name);	
 					rs = pst.executeQuery();
 					if(rs.next()){
 						uAns = new XCUser();
-						uAns.user_id = Integer.parseInt(rs.getString("user_id"));
+						uAns.user_id = rs.getInt("user_id");
 						uAns.user_name = rs.getString("user_name");
 						uAns.user_nick = rs.getString("user_nick");
 						uAns.user_pwd = rs.getString("user_pwd");
@@ -42,6 +43,8 @@ public class XCUser extends SingleTable
 				}
 				break;
 			case FIND_BY_ID:
+				int aUser_id = Integer.parseInt(arg);
+				/* ... */
 				break;
 		}
 		xcDatabase.close();
@@ -49,8 +52,7 @@ public class XCUser extends SingleTable
 	}
 	public XCUser()
 	{
-		raw = false;
-		xcDatabase = new XCDatabase();
+		
 	}
 	public XCUser(String aUser_name, String aUser_pwd, String aUser_email)
 	{
@@ -112,9 +114,7 @@ public class XCUser extends SingleTable
 	}
 	public boolean delete()
 	{
-		if(raw)
-			return false;
-		return true;
+		return false;
 	}
 
 	public boolean checkPwd(String aUser_pwd)
@@ -203,5 +203,4 @@ public class XCUser extends SingleTable
 	private String user_pwd; /* md5 + salt */
 	private String user_name;
 	private String user_nick;
-	private XCDatabase xcDatabase = null;
 }
