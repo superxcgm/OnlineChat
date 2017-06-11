@@ -1,0 +1,129 @@
+<!-- <%@ page contentType="text/html;charset=utf-8" %> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>OnlineChat</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/xc_basic.css">
+	<link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../static/css/home.css">
+	<script src="../static/js/jquery-3.2.1.min.js"></script>
+	<script src="../static/js/home.js"></script>
+</head>
+<body>
+	<div id="outer">
+		<div id="left" class="background-dark">
+			<div id="logo">
+				OnlineChat
+			</div>
+			<div id="cUserInfo">
+				<div class="portrait">
+					<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait-large">
+				</div>
+				<div class="nickname">
+					小川先生<!-- 昵称 -->	
+				</div>
+				<div class="option">
+					<i class="fa fa-bars fa-2x"></i>
+					<div class="option-panel round">
+						<ul>
+							<li><i class="fa fa-user-plus"></i> 新朋友</li>
+							<li><i class="fa fa-home"></i> 进入聊天室</li>
+							<li><i class="fa fa-folder"></i> 文件管理</li>
+							<li><a href="/user/logout"><i class="fa fa-power-off"></i> 退出</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="search-panel">
+				<div style="position: absolute; left:4px; color: black;"><i class="fa fa-search"></i></div>
+				<input type="text" class="textbox" placeholder="Search">
+			</div>
+			<div id="menu">
+				<ul class="list-vertical center">
+					<li style="width:33%" class="active"><i class="fa fa-comment-o fa-2x"></i></li>
+					<li style="width:33%"><i class="fa fa-users fa-2x"></i></li>
+					<li style="width:33%"><i class="fa fa-home fa-2x"></i></li>
+				</ul>
+			</div>
+			<div id="mix-list">
+				<div id="msg-list">
+					<div class="msg-item">
+						<div class="portrait">
+							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+						</div>
+						<div class="right-panel">
+							<div class="nickname">
+								启宏与蛙
+							</div>
+							<div class="text-content">
+								在吗?在吗?在吗?在吗?在吗?在吗?在吗?在吗?在吗?在吗?
+							</div>
+						</div>
+					</div>
+					<div class="msg-item">
+						<div class="portrait">
+							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+						</div>
+						<div class="right-panel">
+							<div class="nickname">
+								不落皇旗
+							</div>
+							<div class="text-content">
+								兄弟们，下沙了〜
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="contact-list" style="display: none;">
+					<div class="contact-item">
+						<div class="portrait">
+							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+						</div>
+						<div class="nickname">
+							启宏与蛙
+						</div>
+					</div>
+					<div class="contact-item">
+						<div class="portrait">
+							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+						</div>
+						<div class="nickname">
+							木鱼先生
+						</div>
+					</div>
+					<div class="contact-item">
+						<div class="portrait">
+							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+						</div>
+						<div class="nickname">
+							火绡衣
+						</div>
+					</div>
+				</div>
+				<div id="room-list"  style="display: none;">
+					<div class="room-item">
+						<div class="portrait">
+							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+						</div>
+						<div class="nickname">
+							不落皇旗
+						</div>
+					</div>
+					<div class="room-item">
+						<div class="portrait">
+							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+						</div>
+						<div class="nickname">
+							布洛格
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="right" class="background-gray">
+			
+		</div>
+	</div>
+</body>
+</html>

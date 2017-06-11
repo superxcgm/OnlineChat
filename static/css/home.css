@@ -1,0 +1,116 @@
+#outer{
+	height: 100%;
+}
+#left{
+	width: 250px;
+	height: 100%;
+	float: left;
+	color: #fff;
+	padding: 10px;
+}
+#right{
+	height: 100%;
+	float: left;
+}
+#logo{
+	padding-bottom: 25px;
+	font-size: 22px;
+}
+#cUserInfo{
+	/*overflow: hidden;*/
+	height: 68px;
+	padding-bottom: 10px;
+}
+#cUserInfo>.portrait{
+	cursor: pointer;
+	float: left;
+}
+#cUserInfo>.nickname{
+	cursor: pointer;
+	float: left;
+	width: 130px;
+	height: 60px;
+	line-height: 60px;
+	font-size: 18px;
+	/*height: 100%;*/
+	/*vertical-align: middle;*/
+	text-align: center;
+}
+#cUserInfo>.option{
+	cursor: pointer;
+	color: #aaa;
+	height: 60px;
+	line-height: 60px;
+	float: left;
+	position: relative;
+}
+#cUserInfo>.option>.option-panel{
+	position: absolute;
+	top:10px;
+	left: 30px;
+	padding: 10px;
+	z-index: 999;
+	width: 120px;
+	display: none;
+	background-color: white;
+}
+#cUserInfo>.option>.option-panel>ul{
+	/*margin-top: -20px;*/
+	list-style: none;
+}
+#cUserInfo>.option>.option-panel>ul>li{
+	height: 25px;
+	line-height: 25px;
+}
+#search-panel{
+	position: relative;
+	padding-bottom: 15px;
+}
+#search-panel>input{
+	height: 30px;
+	background-color: #096;
+	border-color: #096;
+}
+#menu{
+	border-bottom: 1px solid #096;
+	/*padding-bottom: 15px;*/
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+#menu .list-vertical>li{
+	border-right: 1px solid #096;
+	cursor: pointer;
+}
+#menu .list-vertical>li:last-child{
+	border-right: 0px;
+}
+#msg-list{
+	size: 12px;
+}
+#msg-list>.msg-item, #contact-list>.contact-item, #room-list>.room-item{
+	cursor: pointer;
+	height: 50px;
+	border-bottom: 1px solid #096;
+	margin-bottom: 10px;
+}
+#msg-list>.msg-item>.portrait, #contact-list>.contact-item>.portrait,
+#room-list>.room-item>.portrait
+{
+	float: left;
+}
+#msg-list>.msg-item .nickname{
+	
+}
+#msg-list>.msg-item .text-content{
+	color: #ccc;
+	size: 10px;
+	text-overflow:ellipsis;
+	height: 25px;
+}
+#msg-list>.msg-item>.right-panel, #contact-list>.contact-item>.nickname,
+#room-list>.room-item>.nickname{
+	float:left;
+	width: 150px;
+	overflow: hidden;
+	padding-left: 15px;
+}

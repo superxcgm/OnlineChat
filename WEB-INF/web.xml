@@ -83,6 +83,16 @@
     <url-pattern>/myTest</url-pattern>
   </servlet-mapping>
 
+  <!-- index -->
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <servlet-class>xcservlet.Index</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/index.html</url-pattern>
+  </servlet-mapping>
+
   <!-- user -->
   <servlet>
     <servlet-name>user_login</servlet-name>
@@ -90,7 +100,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>user_login</servlet-name>
-    <url-pattern>/index.html</url-pattern>
+    <url-pattern>/user/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>user_logout</servlet-name>
+    <servlet-class>xcservlet.user.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>user_logout</servlet-name>
+    <url-pattern>/user/logout</url-pattern>
   </servlet-mapping>
 
   <servlet>
