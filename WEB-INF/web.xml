@@ -27,51 +27,6 @@
      Welcome to Tomcat
   </description>
 
-  <!-- <servlet>
-    <servlet-name>queryByConditionServlet</servlet-name>
-    <servlet-class>myservlet.data.Example7_2_Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>queryByConditionServlet</servlet-name>
-    <url-pattern>/ch7/queryByConditionServlet</url-pattern>
-  </servlet-mapping>
-
-   <servlet>
-    <servlet-name>insertServlet</servlet-name>
-    <servlet-class>myservlet.data.Example7_3_Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>insertServlet</servlet-name>
-    <url-pattern>/ch7/insertServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>insertBySetServlet</servlet-name>
-    <servlet-class>myservlet.data.Example7_4_Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>insertBySetServlet</servlet-name>
-    <url-pattern>/ch7/insertBySetServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>preparedServlet</servlet-name>
-    <servlet-class>myservlet.data.Example7_6_Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>preparedServlet</servlet-name>
-    <url-pattern>/ch7/preparedServlet</url-pattern>
-  </servlet-mapping>   -->
-
-  <!-- <servlet>
-    <servlet-name>queryAllServlet</servlet-name>
-    <servlet-class>myservlet.data.Example7_8_Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>queryAllServlet</servlet-name>
-    <url-pattern>/ch7/queryAllServlet</url-pattern>
-  </servlet-mapping>   -->
-
   <!-- OnlineChat -->
   <!-- Test -->
   <servlet>
@@ -81,7 +36,7 @@
   <servlet-mapping>
     <servlet-name>myTest</servlet-name>
     <url-pattern>/myTest</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>  
 
   <!-- index -->
   <servlet>

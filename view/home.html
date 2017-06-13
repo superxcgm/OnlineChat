@@ -48,7 +48,10 @@
 			</div>
 			<div id="mix-list">
 				<div id="msg-list">
-					<div class="msg-item">
+					<div class="msg-item" onclick="chat(this)">
+						<!-- 0 user -->
+						<input type="hidden" class="userType" value="0">
+						<input type="hidden" class="userId" value="1024">
 						<div class="portrait">
 							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
@@ -61,7 +64,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="msg-item">
+					<div class="msg-item"  onclick="chat(this)">
+						<input type="hidden" class="userType" value="1">
+						<input type="hidden" class="userId" value="100035">
 						<div class="portrait">
 							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
@@ -76,7 +81,9 @@
 					</div>
 				</div>
 				<div id="contact-list" style="display: none;">
-					<div class="contact-item">
+					<div class="contact-item"  onclick="chat(this)">
+						<input type="hidden" class="userType" value="0">
+						<input type="hidden" class="userId" value="1024">
 						<div class="portrait">
 							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
@@ -84,7 +91,9 @@
 							启宏与蛙
 						</div>
 					</div>
-					<div class="contact-item">
+					<div class="contact-item"  onclick="chat(this)">
+						<input type="hidden" class="userType" value="0">
+						<input type="hidden" class="userId" value="1025">
 						<div class="portrait">
 							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
@@ -92,7 +101,9 @@
 							木鱼先生
 						</div>
 					</div>
-					<div class="contact-item">
+					<div class="contact-item"  onclick="chat(this)">
+						<input type="hidden" class="userType" value="0">
+						<input type="hidden" class="userId" value="1027">
 						<div class="portrait">
 							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
@@ -102,7 +113,9 @@
 					</div>
 				</div>
 				<div id="room-list"  style="display: none;">
-					<div class="room-item">
+					<div class="room-item"  onclick="chat(this)">
+						<input type="hidden" class="userType" value="1">
+						<input type="hidden" class="userId" value="100035">
 						<div class="portrait">
 							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
@@ -110,7 +123,9 @@
 							不落皇旗
 						</div>
 					</div>
-					<div class="room-item">
+					<div class="room-item"  onclick="chat(this)">
+						<input type="hidden" class="userType" value="1">
+						<input type="hidden" class="userId" value="100047">
 						<div class="portrait">
 							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
@@ -122,7 +137,18 @@
 			</div>
 		</div>
 		<div id="right" class="background-gray">
-			
+			<!-- <input type="hidden" class="userType" value="" />
+			<input type="hidden" class="userId" value="" />
+			<div class="msg-username center">
+				启宏与蛙
+			</div>
+			<div class="msg-content">
+				
+			</div>
+			<div class="msg-sent">
+				<textarea></textarea>
+				<button class="btn btn-primary" style="width: 80px;" onclick="sendMsg(this)">发送</button>
+			</div> -->
 		</div>
 	</div>
 </body>

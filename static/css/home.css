@@ -114,3 +114,51 @@
 	overflow: hidden;
 	padding-left: 15px;
 }
+#right>.msg-username
+{
+	height: 60px;
+	line-height: 60px;
+	font-size: 18px;
+	border-bottom: 1px solid #ccc;
+}
+#right>.msg-content
+{
+	/*padding: 10px;*/
+	overflow-y:scroll;
+}
+#right>.msg-content>.msg-item
+{
+	padding:10px;
+	overflow: hidden;
+}
+#right>.msg-content>.msg-item>.msg-detail
+{
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 5px;
+	background-color: #16a085;
+}
+#right>.msg-sent
+{
+	height: 150px;
+	width: 100%;
+	position: relative;
+}
+#right>.msg-sent button
+{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+#right>.msg-sent textarea
+{
+	outline: none;
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+	resize : none;
+}
+#right>.msg-sent textarea:hover
+{
+	outline: none;
+}
