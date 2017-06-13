@@ -44,7 +44,11 @@ public class Login extends HttpServlet
 			return ;
 		}
 		session.setAttribute("cUser", xcUser);
-		out.println("登录成功!");
+		if(xcUser.getUser_nick().equals("Do not set nickName")){
+			xcUser.setUser_nick("用户" + xcUser.getUser_id());
+			xcUser.update();
+		}
+		response.sendRedirect("/onlinechat");
 	}
 	public void doGet(HttpServletRequest request,
 		HttpServletResponse response) throws IOException, ServletException
@@ -58,7 +62,7 @@ public class Login extends HttpServlet
 		if(xcUser != null)
 		{
 			PrintWriter out = response.getWriter();
-			out.print("您已经成功登录!");
+			response.sendRedirect("/onlinechat");
 			return ;
 		}
 		XCUser userRaw = new XCUser("", "", "", "", 1); /* raw */

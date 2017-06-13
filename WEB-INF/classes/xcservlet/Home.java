@@ -6,7 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import xcbean.*;
 
-public class Index extends HttpServlet
+public class Home extends HttpServlet
 {
 	public void init(ServletConfig config) throws ServletException
 	{
@@ -30,16 +30,13 @@ public class Index extends HttpServlet
 
 		HttpSession session = request.getSession(true);
 		XCUser xcUser = (XCUser)session.getAttribute("cUser");
-		if(xcUser != null)
-		{
-			PrintWriter out = response.getWriter();
-			/* 跳转到主页面 */
-			response.sendRedirect("/onlinechat");
-			// out.print("您已经成功登录!");
+		if(xcUser == null){
+			response.sendRedirect("/user/login");
 			return ;
 		}
-		
-		response.sendRedirect("/user/login");
+		request.setAttribute("cUser", xcUser);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/home.jsp");
+		dispatcher.forward(request, response);
 	}
 	private void pError(HttpServletRequest request,
 		HttpServletResponse response, String strErr) throws IOException, ServletException

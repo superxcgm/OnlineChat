@@ -1,0 +1,69 @@
+<!-- <%@ page contentType="text/html;charset=utf-8" %> -->
+<!-- <%
+	String strErr = (String)request.getAttribute("strErr");
+	if(strErr == null)
+		strErr = "";
+%> -->
+<!-- <jsp:useBean id="userRaw" type="xcbean.XCUser" scope="request" /> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户信息 - OnlineChat</title>
+	<!-- 网站名使用常量 -->
+	<link rel="stylesheet" type="text/css" href="../..//static/css/xc_basic.css">
+	<link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
+	<style>
+		div#embed{
+			padding: 20px;
+			width: 500px;
+		}
+		table{
+			width: 100%;
+		}
+		table td{
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body class="background-gray">
+	<div id="embed">
+		<div class="text-warning text-info">可能的提示信息</div>
+		<form action="" method="post">
+			<div>
+				<table>
+					<tr>
+						<td width="20%">用户ID</td>
+						<td width="80%">100086</td>
+					</tr>
+					<tr>
+						<td>用户名</td>
+						<td>superxc</td>
+					</tr>
+				</table>
+			</div>
+			<div class="form-ele">昵称</div>
+			<div>
+				<input type="text" name="username" class="textbox textbox-block" value=''>
+			</div>
+			<div class="form-ele">邮箱</div>
+			<div>
+				<input type="text" name="email" class="textbox textbox-block" value=''>
+			</div>
+			<div class="form-ele">密码</div>
+			<div>
+				<input type="password" name="password" class="textbox textbox-block">
+			</div>
+			<div class="form-ele">新密码</div>
+			<div>
+				<input type="password" name="newpassword" class="textbox textbox-block">
+			</div>
+			<div class="form-ele">重复密码</div>
+			<div>
+				<input type="password" name="repassword" class="textbox textbox-block">
+			</div>
+			<input type="submit" value="保存" class="btn btn-primary btn-block">
+		</form>
+	</div>
+</body>
+</html>

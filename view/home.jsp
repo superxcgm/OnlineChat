@@ -1,14 +1,15 @@
-<!-- <%@ page contentType="text/html;charset=utf-8" %> -->
+<%@ page contentType="text/html;charset=utf-8" %>
+<jsp:useBean id="cUser" type="xcbean.XCUser" scope="request" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>OnlineChat</title>
-	<link rel="stylesheet" type="text/css" href="../static/css/xc_basic.css">
-	<link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../static/css/home.css">
-	<script src="../static/js/jquery-3.2.1.min.js"></script>
-	<script src="../static/js/home.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/css/xc_basic.css">
+	<link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/css/home.css">
+	<script src="/static/js/jquery-3.2.1.min.js"></script>
+	<script src="/static/js/home.js"></script>
 </head>
 <body>
 	<div id="outer">
@@ -21,7 +22,7 @@
 					<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait-large">
 				</div>
 				<div class="nickname">
-					小川先生<!-- 昵称 -->	
+					<jsp:getProperty name="cUser" property="user_nick" /><!-- 昵称 -->	
 				</div>
 				<div class="option">
 					<i class="fa fa-bars fa-2x"></i>
@@ -149,7 +150,6 @@
 				<textarea></textarea>
 				<button class="btn btn-primary" style="width: 80px;" onclick="sendMsg(this)">发送</button>
 			</div> -->
-			<iframe src="user/userinfo.html" frameborder="0" style="width:100%; height: 100%;"></iframe>
 		</div>
 	</div>
 </body>

@@ -52,7 +52,7 @@
 				<ul class="list-vertical">
 					<li style="width:33%"><a href="#"><i class="fa fa-qq fa-5x"></i></a></li>
 					<li style="width:33%"><a href="#"><i class="fa fa-wechat fa-5x"></i></a></li>
-					<li style="width:33%"><a href="#"><<i class="fa fa-github fa-5x"></i></a></li>
+					<li style="width:33%"><a href="#"><i class="fa fa-github fa-5x"></i></a></li>
 				</ul>
 			</div>
 		</div>

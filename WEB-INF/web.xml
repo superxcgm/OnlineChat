@@ -48,6 +48,16 @@
     <url-pattern>/index.html</url-pattern>
   </servlet-mapping>
 
+  <!-- home -->
+  <servlet>
+    <servlet-name>onlinechat</servlet-name>
+    <servlet-class>xcservlet.Home</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>onlinechat</servlet-name>
+    <url-pattern>/onlinechat</url-pattern>
+  </servlet-mapping>
+
   <!-- user -->
   <servlet>
     <servlet-name>user_login</servlet-name>

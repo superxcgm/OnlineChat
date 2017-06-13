@@ -5,15 +5,17 @@ public class XCUser extends SingleTable
 {
 	public static void main(String[] args)
 	{
-		XCUser xcUser= XCUser.find(FIND_BY_NAME, "aslfkjff");
+		XCUser xcUser= XCUser.find(FIND_BY_NAME, "superxc");
 		if(xcUser == null){
-			System.out.println("User do not found!");
-		}else{
-			System.out.println(xcUser.user_id);
-			System.out.println(xcUser.user_name);
-			System.out.println(xcUser.user_nick);
-			System.out.println(xcUser.user_pwd);
-			System.out.println(xcUser.user_email);
+			System.out.println("用户不存在。");
+			return ;
+		}
+		if(xcUser.getUser_nick().equals("Do not set nickName")){
+			xcUser.setUser_nick("用户" + xcUser.getUser_id());
+			if(xcUser.update())
+				System.out.println("更新成功");
+			else
+				System.out.println("更新失败");
 		}
 	}
 	public static XCUser find(int flag, String arg)
@@ -103,7 +105,19 @@ public class XCUser extends SingleTable
 			}
 		}else{
 			if(dirty){
-				/* update */
+				pst = xcDatabase.prepareStatement(String.format("UPDATE %s SET user_pwd = ?, user_email = ?, user_nick = ? WHERE user_id = ?", tableName));
+				try{
+					pst.setString(1, user_pwd);
+					pst.setString(2, user_email);
+					pst.setString(3, user_nick);
+					pst.setInt(4, user_id);
+					int ans = pst.executeUpdate();
+					if(ans > 0)
+						bAns = true;
+				}catch(SQLException e){
+					strErr = "未知系统错误。";
+					System.out.println(e);
+				}
 			}else{
 				/* data not dirty, do not need to update*/
 				bAns = true;
