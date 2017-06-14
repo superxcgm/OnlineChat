@@ -104,4 +104,22 @@
     <url-pattern>/user/resetPwd</url-pattern>
   </servlet-mapping>  
 
+  <servlet>
+    <servlet-name>user_info</servlet-name>
+    <servlet-class>xcservlet.user.UserInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>user_info</servlet-name>
+    <url-pattern>/user/userinfo</url-pattern>
+  </servlet-mapping>  
+  
+  <!-- newfriend -->
+  <servlet>
+    <servlet-name>newfriend_search</servlet-name>
+    <servlet-class>xcservlet.newfriend.Search</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>newfriend_search</servlet-name>
+    <url-pattern>/newfriend/search</url-pattern>
+  </servlet-mapping>
 </web-app>

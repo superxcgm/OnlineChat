@@ -20,14 +20,14 @@
 				<div class="portrait">
 					<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait-large">
 				</div>
-				<div class="nickname">
+				<div class="nickname" onclick="modifyInfo()">
 					小川先生<!-- 昵称 -->	
 				</div>
 				<div class="option">
 					<i class="fa fa-bars fa-2x"></i>
 					<div class="option-panel round">
 						<ul>
-							<li><i class="fa fa-user-plus"></i> 新朋友</li>
+							<li><a href="newfriend/search.html" target="right-frame"><i class="fa fa-user-plus"></i> 新朋友</a></li>
 							<li><i class="fa fa-home"></i> 进入聊天室</li>
 							<li><i class="fa fa-folder"></i> 文件管理</li>
 							<li><a href="/user/logout"><i class="fa fa-power-off"></i> 退出</a></li>
@@ -149,7 +149,7 @@
 				<textarea></textarea>
 				<button class="btn btn-primary" style="width: 80px;" onclick="sendMsg(this)">发送</button>
 			</div> -->
-			<iframe src="user/userinfo.html" frameborder="0" style="width:100%; height: 100%;"></iframe>
+			<iframe src="newfriend/search.html" frameborder="0" style="width:100%; height: 100%;" name="right-frame"></iframe>
 		</div>
 	</div>
 </body>

@@ -19,16 +19,16 @@
 			</div>
 			<div id="cUserInfo">
 				<div class="portrait">
-					<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait-large">
+					<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait-large">
 				</div>
-				<div class="nickname">
+				<div class="nickname" onclick="modifyInfo()">
 					<jsp:getProperty name="cUser" property="user_nick" /><!-- 昵称 -->	
 				</div>
 				<div class="option">
 					<i class="fa fa-bars fa-2x"></i>
 					<div class="option-panel round">
 						<ul>
-							<li><i class="fa fa-user-plus"></i> 新朋友</li>
+							<li onclick="newfriend()"><i class="fa fa-user-plus"></i> 新朋友</li>
 							<li><i class="fa fa-home"></i> 进入聊天室</li>
 							<li><i class="fa fa-folder"></i> 文件管理</li>
 							<li><a href="/user/logout"><i class="fa fa-power-off"></i> 退出</a></li>
@@ -54,7 +54,7 @@
 						<input type="hidden" class="userType" value="0">
 						<input type="hidden" class="userId" value="1024">
 						<div class="portrait">
-							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
 						<div class="right-panel">
 							<div class="nickname">
@@ -69,7 +69,7 @@
 						<input type="hidden" class="userType" value="1">
 						<input type="hidden" class="userId" value="100035">
 						<div class="portrait">
-							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
 						<div class="right-panel">
 							<div class="nickname">
@@ -86,7 +86,7 @@
 						<input type="hidden" class="userType" value="0">
 						<input type="hidden" class="userId" value="1024">
 						<div class="portrait">
-							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
 						<div class="nickname">
 							启宏与蛙
@@ -96,7 +96,7 @@
 						<input type="hidden" class="userType" value="0">
 						<input type="hidden" class="userId" value="1025">
 						<div class="portrait">
-							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
 						<div class="nickname">
 							木鱼先生
@@ -106,7 +106,7 @@
 						<input type="hidden" class="userType" value="0">
 						<input type="hidden" class="userId" value="1027">
 						<div class="portrait">
-							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
 						<div class="nickname">
 							火绡衣
@@ -118,7 +118,7 @@
 						<input type="hidden" class="userType" value="1">
 						<input type="hidden" class="userId" value="100035">
 						<div class="portrait">
-							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
 						<div class="nickname">
 							不落皇旗
@@ -128,7 +128,7 @@
 						<input type="hidden" class="userType" value="1">
 						<input type="hidden" class="userId" value="100047">
 						<div class="portrait">
-							<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
+							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
 						</div>
 						<div class="nickname">
 							布洛格

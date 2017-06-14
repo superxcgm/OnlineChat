@@ -86,3 +86,11 @@ function chat(obj)
 		}
 	});
 };
+function modifyInfo()
+{
+	$("#right").html('<iframe src="/user/userinfo" frameborder="0" style="width:100%; height: 100%;" name="right-frame"></iframe>');
+}
+function newfriend()
+{
+	$("#right").html('<iframe src="/newfriend/search" frameborder="0" style="width:100%; height: 100%;" name="right-frame"></iframe>');	
+}

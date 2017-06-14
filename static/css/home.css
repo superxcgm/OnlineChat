@@ -59,6 +59,7 @@
 	list-style: none;
 }
 #cUserInfo>.option>.option-panel>ul>li{
+	color: black;
 	height: 25px;
 	line-height: 25px;
 }

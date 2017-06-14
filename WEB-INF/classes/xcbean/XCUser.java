@@ -80,6 +80,13 @@ public class XCUser extends SingleTable
 		user_nick = aUser_nick;
 
 	}
+	public XCUser(int aUser_id, String aUser_name, String aUser_pwd, String aUser_email, String aUser_nick, int aRaw)
+	{
+		/* raw data can not update to database */
+		this(aUser_name, aUser_pwd, aUser_email, aUser_nick, 1);
+		user_id = aUser_id;
+	}
+
 	public boolean update()
 	{
 		if(raw)
