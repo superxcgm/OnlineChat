@@ -26,7 +26,7 @@ public class Checker
 	/* used only in form input check */
 	public static String check(String str, int policy)
 	{
-		if(str == null)
+		if(str == null || str.length() == 0)
 			return " 不能为空!";
 		if((policy & CH_ALNUM) != 0){
 			for(int i = 0; i < str.length(); ++i)

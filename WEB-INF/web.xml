@@ -113,6 +113,15 @@
     <url-pattern>/user/userinfo</url-pattern>
   </servlet-mapping>  
   
+  <servlet>
+    <servlet-name>user_profile</servlet-name>
+    <servlet-class>xcservlet.user.Profile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>user_profile</servlet-name>
+    <url-pattern>/user/profile</url-pattern>
+  </servlet-mapping>  
+
   <!-- newfriend -->
   <servlet>
     <servlet-name>newfriend_search</servlet-name>

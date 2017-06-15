@@ -1,4 +1,4 @@
-package xcservlet.newfriend;
+package xcservlet.user;
 
 import java.io.*;
 import java.sql.*;
@@ -6,7 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import xcbean.*;
 
-public class Search extends HttpServlet
+public class Profile extends HttpServlet
 {
 	public void init(ServletConfig config) throws ServletException
 	{
@@ -23,28 +23,6 @@ public class Search extends HttpServlet
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession(true);
 
-		String keyword = request.getParameter("keyword");
-		// int error = 0;
-		if(keyword == null || ((keyword = keyword.trim()) != null && keyword.length() == 0)){
-			out.print("<script>history.back();</script>");
-			return;
-		}
-
-		XCUser[] users = XCUser.blurSearch(keyword);
-		String[][] sUsers;
-		if(users == null)
-			sUsers = null;
-		else{
-			sUsers = new String[users.length][3];
-			for(int i = 0; i < users.length; ++i){
-				sUsers[i][0] = Integer.toString(users[i].getUser_id());
-				sUsers[i][1] = users[i].getUser_nick();
-				sUsers[i][2] = users[i].getUser_email();
-			}
-		}
-		request.setAttribute("users", sUsers);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/newfriend/searchResult.jsp");
-		dispatcher.forward(request, response);
 	}
 	public void doGet(HttpServletRequest request,
 		HttpServletResponse response) throws IOException, ServletException
@@ -61,7 +39,15 @@ public class Search extends HttpServlet
 			response.sendRedirect("/");
 			return ;
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/newfriend/search.jsp");
+		String sUid = (String)request.getParameter("id");
+		if(sUid == null || ((sUid = sUid.trim()) != null && sUid.length() == 0))
+			return ;
+		XCUser user = XCUser.find(XCUser.FIND_BY_ID, sUid);
+		if(user == null)
+			return ;
+		request.setAttribute("isFriend", xcUser.isFriend(user));
+		request.setAttribute("user", user);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/user/profile.jsp");
 		dispatcher.forward(request, response);
 	}
 	private void pError(HttpServletRequest request,

@@ -5,18 +5,11 @@ public class XCUser extends SingleTable
 {
 	public static void main(String[] args)
 	{
-		XCUser xcUser= XCUser.find(FIND_BY_NAME, "superxc");
-		if(xcUser == null){
-			System.out.println("用户不存在。");
-			return ;
-		}
-		if(xcUser.getUser_nick().equals("Do not set nickName")){
-			xcUser.setUser_nick("用户" + xcUser.getUser_id());
-			if(xcUser.update())
-				System.out.println("更新成功");
-			else
-				System.out.println("更新失败");
-		}
+		XCUser user = XCUser.find(FIND_BY_ID, "1000000");
+		System.out.println(user.user_name);
+		System.out.println(user.user_nick);
+		System.out.println(user.user_id);
+		System.out.println(user.user_email);
 	}
 	public static XCUser find(int flag, String arg)
 	{
@@ -41,15 +34,69 @@ public class XCUser extends SingleTable
 						uAns.user_email = rs.getString("user_email");
 					}
 				}catch(SQLException e){
-
+					System.out.println(e);
 				}
 				break;
 			case FIND_BY_ID:
 				int aUser_id = Integer.parseInt(arg);
-				/* ... */
+				try{
+					pst = xcDatabase.prepareStatement(String.format("SELECT user_id, user_name, user_nick, user_pwd, user_email FROM %s WHERE user_id = ?", tableName));
+					pst.setInt(1, aUser_id);
+					rs = pst.executeQuery();
+					if(rs.next()){
+						uAns = new XCUser();
+						uAns.user_id = rs.getInt("user_id");
+						uAns.user_name = rs.getString("user_name");
+						uAns.user_nick = rs.getString("user_nick");
+						uAns.user_pwd = rs.getString("user_pwd");
+						uAns.user_email = rs.getString("user_email");
+					}
+				}catch(SQLException e){
+					System.out.println(e);
+				}
 				break;
 		}
 		xcDatabase.close();
+		return uAns;
+	}
+	public static XCUser[] blurSearch(String keyword)
+	{
+		/* keyword must be deal with before call this */
+		XCDatabase xcDatabase = new XCDatabase();
+		XCUser[] uAns = null;
+		xcDatabase.connect();
+		PreparedStatement pst;
+		ResultSet rs;
+		try{
+			pst = xcDatabase.prepareStatement(String.format("SELECT user_id, user_email, user_nick FROM %s WHERE user_id = ? OR user_nick LIKE ? OR user_nick = ? OR user_nick LIKE ? OR user_nick LIKE ? OR user_email LIKE ? OR user_email = ? OR user_email LIKE ? OR user_email LIKE ?", tableName));
+			int iKeyword;
+			try{
+				iKeyword = Integer.parseInt(keyword);	
+			}catch(NumberFormatException exp){
+				iKeyword = 0;
+			}
+			
+			pst.setInt(1, iKeyword);
+			pst.setString(2, "%" + keyword + "%");
+			pst.setString(3, keyword);
+			pst.setString(4, "%" + keyword);
+			pst.setString(5, keyword + "%");
+			pst.setString(6, "%" + keyword + "%");
+			pst.setString(7, keyword);
+			pst.setString(8, "%" + keyword);
+			pst.setString(9, keyword + "%");
+			rs = pst.executeQuery();
+			rs.last();
+			int count = rs.getRow();
+			uAns = new XCUser[count];
+			rs.beforeFirst();
+			int i = 0;
+			// public XCUser(int aUser_id, String aUser_name, String aUser_pwd, String aUser_email, String aUser_nick, int aRaw)
+			while(rs.next())
+				uAns[i++] = new XCUser(rs.getInt("user_id"), "", "", rs.getString("user_email"), rs.getString("user_nick"), 1); /* raw */
+		}catch(SQLException e){
+			System.out.println(e);
+		}
 		return uAns;
 	}
 	public XCUser()
@@ -87,6 +134,10 @@ public class XCUser extends SingleTable
 		user_id = aUser_id;
 	}
 
+	public boolean isFriend(XCUser user)
+	{
+		/* wait to be implement */
+	}
 	public boolean update()
 	{
 		if(raw)

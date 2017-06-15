@@ -36,7 +36,7 @@ public class XCDatabase
 	public PreparedStatement prepareStatement(String s)
 	{
 		try{
-			return con.prepareStatement(s);
+			return con.prepareStatement(s, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		}catch(SQLException e){
 			return null;
 		}
