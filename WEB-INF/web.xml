@@ -131,4 +131,13 @@
     <servlet-name>newfriend_search</servlet-name>
     <url-pattern>/newfriend/search</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>newfriend_add</servlet-name>
+    <servlet-class>xcservlet.newfriend.Add</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>newfriend_add</servlet-name>
+    <url-pattern>/newfriend/add</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -5,7 +5,11 @@ public class Friend extends SingleTable
 {
 	public static void main(String[] args)
 	{
-
+		Friend fnd = Friend.find(1000000, 1000001);
+		if(fnd != null)
+			System.out.println("is friend");
+		else
+			System.out.println("not friend");
 	}
 	public static Friend find(int aUser_id_1, int aUser_id_2)
 	{

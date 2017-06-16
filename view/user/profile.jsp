@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <jsp:useBean id="user" type="xcbean.XCUser" scope="request" />
 <%
-	boolean isFriend = (boolean)request.getParameter("isFriend");
+	// boolean isFriend = (boolean)request.getParameter("isFriend");
+	boolean isFriend = request.getAttribute("isFriend").equals("true");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +24,12 @@
 			position: absolute;
 		}
 	</style>
+	<script>
+		function addFriend(targetId)
+		{
+			window.location.href = "/newfriend/add?id=" + targetId;
+		}
+	</script>
 </head>
 <body class="background-gray">
 	<div id="outer">
@@ -59,7 +66,7 @@
 						"</div>");
 			}else{
 				out.print("<div class='center'>" +
-							"<button class='btn btn-primary btn-block' style='width: 50%'>添加好友</button>" +
+							"<button class='btn btn-primary btn-block' style='width: 50%' onclick='addFriend(" + user.getUser_id() + ")'>添加好友</button>" +
 						"</div>");
 			}
 		%>

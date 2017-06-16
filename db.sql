@@ -37,6 +37,7 @@ CREATE TABLE  `msg_records` (
   `msg_user_id_recv` int(11) NOT NULL,
   `msg_type` int(11) NOT NULL,
   `msg_context` varchar(255) NOT NULL,
-  `msg_time` timestamp NOT NULL,
+  `msg_time` timestamp,
+  `msg_read` int(11) DEFAULT 0,
   PRIMARY KEY(`msg_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
