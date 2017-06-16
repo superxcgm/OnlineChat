@@ -56,8 +56,6 @@ public class MsgRecord extends SingleTable
 			while(rs.next()){
 				int send_id = rs.getInt("msg_user_id_send");
 				XCUser tmpUser = XCUser.find(XCUser.FIND_BY_ID, "" + send_id);
-				String split = "[superxc_split]";
-				String line_split = "[superxc_line_split]";
 				ans.append(send_id + split + tmpUser.getUser_nick() + split + rs.getInt("msg_type") + split + rs.getString("msg_context") + split + rs.getTimestamp("msg_time") + line_split);
 				list.add(rs.getInt("msg_id") + "");
 			}

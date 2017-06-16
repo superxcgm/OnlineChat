@@ -40,8 +40,8 @@
 				</form>
 			</div>
 			<div style="padding-bottom: 30px;">
-				<p><a href="user/registe" class="link-primary">&gt; 请从这里注册新帐户</a></p>
-				<p><a href="user/forgetPwd" class="link-primary">&gt; 如果您忘记密码 请点这里</a></p>
+				<p><a href="/user/registe" class="link-primary">&gt; 请从这里注册新帐户</a></p>
+				<p><a href="/user/forgetPwd" class="link-primary">&gt; 如果您忘记密码 请点这里</a></p>
 			</div>
 			<div>
 				<div class="order" style="padding-bottom: 20px;">  

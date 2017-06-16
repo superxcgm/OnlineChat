@@ -141,6 +141,15 @@
     <url-pattern>/newfriend/add</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>newfriend_confirm</servlet-name>
+    <servlet-class>xcservlet.newfriend.Confirm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>newfriend_confirm</servlet-name>
+    <url-pattern>/newfriend/confirm</url-pattern>
+  </servlet-mapping>
+
   <!-- msgloop -->
   <servlet>
     <servlet-name>getMsg</servlet-name>
@@ -149,5 +158,23 @@
   <servlet-mapping>
     <servlet-name>getMsg</servlet-name>
     <url-pattern>/getMsg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>getFriendCount</servlet-name>
+    <servlet-class>xcservlet.GetFriendCount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getFriendCount</servlet-name>
+    <url-pattern>/getFriendCount</url-pattern>
+  </servlet-mapping>
+  <!-- getFriendList -->
+  <servlet>
+    <servlet-name>getFriendList</servlet-name>
+    <servlet-class>xcservlet.GetFriendList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getFriendList</servlet-name>
+    <url-pattern>/getFriendList</url-pattern>
   </servlet-mapping>
 </web-app>

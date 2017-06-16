@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="/static/css/home.css">
 	<script src="/static/js/jquery-3.2.1.min.js"></script>
 	<script src="/static/js/home.js"></script>
+	<script src="/static/layer/layer.js"></script>
 </head>
 <body>
 	<div id="outer">
@@ -49,8 +50,7 @@
 			</div>
 			<div id="mix-list">
 				<div id="msg-list">
-					<div class="msg-item" onclick="chat(this)">
-						<!-- 0 user -->
+					<!-- <div class="msg-item" onclick="chat(this)">
 						<input type="hidden" class="userType" value="0">
 						<input type="hidden" class="userId" value="1024">
 						<div class="portrait">
@@ -64,25 +64,11 @@
 								在吗?在吗?在吗?在吗?在吗?在吗?在吗?在吗?在吗?在吗?
 							</div>
 						</div>
-					</div>
-					<div class="msg-item"  onclick="chat(this)">
-						<input type="hidden" class="userType" value="1">
-						<input type="hidden" class="userId" value="100035">
-						<div class="portrait">
-							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
-						</div>
-						<div class="right-panel">
-							<div class="nickname">
-								不落皇旗
-							</div>
-							<div class="text-content">
-								兄弟们，下沙了〜
-							</div>
-						</div>
-					</div>
+					</div> -->
+					
 				</div>
 				<div id="contact-list" style="display: none;">
-					<div class="contact-item"  onclick="chat(this)">
+					<!-- <div class="contact-item"  onclick="chat(this)">
 						<input type="hidden" class="userType" value="0">
 						<input type="hidden" class="userId" value="1024">
 						<div class="portrait">
@@ -91,27 +77,8 @@
 						<div class="nickname">
 							启宏与蛙
 						</div>
-					</div>
-					<div class="contact-item"  onclick="chat(this)">
-						<input type="hidden" class="userType" value="0">
-						<input type="hidden" class="userId" value="1025">
-						<div class="portrait">
-							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
-						</div>
-						<div class="nickname">
-							木鱼先生
-						</div>
-					</div>
-					<div class="contact-item"  onclick="chat(this)">
-						<input type="hidden" class="userType" value="0">
-						<input type="hidden" class="userId" value="1027">
-						<div class="portrait">
-							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">
-						</div>
-						<div class="nickname">
-							火绡衣
-						</div>
-					</div>
+					</div> -->
+					
 				</div>
 				<div id="room-list"  style="display: none;">
 					<div class="room-item"  onclick="chat(this)">

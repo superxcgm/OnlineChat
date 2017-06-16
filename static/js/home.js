@@ -1,7 +1,43 @@
 // init
 var screenHeight;
 var screenWidth;
-window.setInterval(messageloop, 3000); 
+var friend_count = -1;
+var mysplit = "[superxc_split]";
+var mylineSplit = "[superxc_line_split]";
+window.setInterval(messageloop, 3000);
+window.setInterval(refreshFriendList, 3000); 
+String.prototype.format= function(){
+       var args = arguments;
+       return this.replace(/\{(\d+)\}/g,function(s,i){
+         return args[i];
+       });
+}
+var msg_item = '<div class="msg-item" onclick="{0}">\
+						<input type="hidden" class="userType" value="{1}">\
+						<input type="hidden" class="userId" value="{2}">\
+						<input type="hidden" class="msg_time" value="{3}" />\
+						<div class="portrait">\
+							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">\
+						</div>\
+						<div class="right-panel">\
+							<div class="nickname">\
+								{4}\
+							</div>\
+							<div class="text-content">\
+								{5}\
+							</div>\
+						</div>\
+					</div>';
+var contact_item = '<div class="contact-item"  onclick="chat(this)">\
+						<input type="hidden" class="userType" value="0">\
+						<input type="hidden" class="userId" value="{0}">\
+						<div class="portrait">\
+							<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">\
+						</div>\
+						<div class="nickname">\
+							{1}\
+						</div>\
+					</div>';
 $(function(){
 	screenHeight = document.body.scrollHeight;
 	screenWidth = document.body.scrollWidth;
@@ -96,14 +132,60 @@ function newfriend()
 {
 	$("#right").html('<iframe src="/newfriend/search" frameborder="0" style="width:100%; height: 100%;" name="right-frame"></iframe>');	
 }
+function confirm_Add(obj, targetId, user_name)
+{
+	$(obj).attr("onclick", "");
+	layer.msg(user_name + '[' + targetId + ']请求添加您为好友？', {
+	  time: 0 //不自动关闭
+	  ,btn: ['接受', '拒绝']
+	  ,yes: function(index){
+	    layer.close(index);
+	    // console.log("发送一个ajax，同意请求");
+	    $.get("/newfriend/confirm?id=" + targetId);
+	  }
+	});
+}
 function messageloop()
 {
 	$.get("/getMsg", function(data){
 		if(!isNull(data)){
-			console.log(data);
+			var list = data.split(mylineSplit);
+			console.log(list);
+			for(i = 0; i < list.length; ++i){
+				if(!isNull(list[i])){
+					console.log(list[i]);
+					var ele = (list[i]).split(mysplit);
+					switch(ele[2]){
+						case "2": /* system message add friend */
+							$("#msg-list").html($("#msg-list").html() + msg_item.format('confirm_Add(this,' + ele[0] + ',\''+ ele[1] +'\')', '', '', ele[4],'系统消息', "新朋友请求"));
+							break;
+					}
+				}
+			}
 		}
 	});
-	// window.setTimeout(messageloop(), 1000);
+}
+function refreshFriendList()
+{
+	$.get("/getFriendCount", function(data){
+		var cnt = parseInt(data);
+		if(cnt != friend_count){
+			/* friend should sorted in server */
+			$.get("/getFriendList", function(data){
+				var list = data.split(mylineSplit);
+				console.log(list);
+				$("#contact-list").html("");
+				for(i = 0; i < list.length; ++i){
+					if(!isNull(list[i])){
+						console.log(list[i]);
+						var ele = (list[i]).split(mysplit);
+						$("#contact-list").html($("#contact-list").html() + contact_item.format(ele[0], ele[1]));
+					}
+				}
+				friend_count = cnt;
+			});
+		}
+	});
 }
 function isNull( str ){
 	if ( str == "" ) return true;

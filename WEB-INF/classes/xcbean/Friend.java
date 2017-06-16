@@ -35,6 +35,46 @@ public class Friend extends SingleTable
 		xcDatabase.close();
 		return fAns;
 	}
+	public static int getFriendCount(XCUser user)
+	{
+		int iAns = 0;
+		XCDatabase xcDatabase = new XCDatabase();
+		xcDatabase.connect();
+		PreparedStatement pst;
+		ResultSet rs;
+		try{
+			pst = xcDatabase.prepareStatement(String.format("SELECT COUNT(1) FROM %s WHERE user_id_1 = ?", tableName));
+			pst.setInt(1, user.getUser_id());
+			rs = pst.executeQuery();
+			if(rs.next())
+				iAns = rs.getInt("COUNT(1)");
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		xcDatabase.close();
+		return iAns;
+	}
+	public static String getFriendList(XCUser user)
+	{
+		StringBuilder sAns = new StringBuilder("");
+		XCDatabase xcDatabase = new XCDatabase();
+		xcDatabase.connect();
+		PreparedStatement pst;
+		ResultSet rs;
+		try{
+			pst = xcDatabase.prepareStatement(String.format("SELECT user_id_2 FROM %s WHERE user_id_1 = ?", tableName));
+			pst.setInt(1, user.getUser_id());
+			rs = pst.executeQuery();
+			if(rs.next()){
+				XCUser tmpUser = XCUser.find(XCUser.FIND_BY_ID, "" + rs.getInt("user_id_2"));
+				sAns.append(rs.getInt("user_id_2") + split + tmpUser.getUser_nick() + line_split);
+			}
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		xcDatabase.close();
+		return sAns.toString();
+	}
 	public Friend()
 	{
 		

@@ -6,7 +6,8 @@ public class XCUser extends SingleTable
 	public static void main(String[] args)
 	{
 		XCUser xcUser = XCUser.find(FIND_BY_ID, "1000001");
-		System.out.print(xcUser.getMsg());
+		System.out.print(xcUser.getFriendList());
+
 	}
 	public static XCUser find(int flag, String arg)
 	{
@@ -134,6 +135,14 @@ public class XCUser extends SingleTable
 	public String getMsg()
 	{
 		return MsgRecord.getMsg(this);
+	}
+	public int getFriendCount()
+	{
+		return Friend.getFriendCount(this);
+	}
+	public String getFriendList()
+	{
+		return Friend.getFriendList(this);
 	}
 	public boolean isFriend(XCUser user)
 	{
