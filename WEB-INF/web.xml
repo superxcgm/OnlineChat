@@ -140,4 +140,14 @@
     <servlet-name>newfriend_add</servlet-name>
     <url-pattern>/newfriend/add</url-pattern>
   </servlet-mapping>
+
+  <!-- msgloop -->
+  <servlet>
+    <servlet-name>getMsg</servlet-name>
+    <servlet-class>xcservlet.GetMsg</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getMsg</servlet-name>
+    <url-pattern>/getMsg</url-pattern>
+  </servlet-mapping>
 </web-app>

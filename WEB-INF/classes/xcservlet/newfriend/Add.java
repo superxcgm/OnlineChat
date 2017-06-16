@@ -48,7 +48,7 @@ public class Add extends HttpServlet
 		String str;
 		/* 不能添加自己为好友 */
 		if(!xcUser.isFriend(user)){
-			if(MsgRecord.SystemMsg(MsgRecord.SYS_ADD_FRIEND, "" + xcUser.getUser_id(), "" + user.getUser_id()))
+			if(MsgRecord.systemMsg(MsgRecord.SYS_ADD_FRIEND, "" + xcUser.getUser_id(), "" + user.getUser_id()))
 				str = "请求已经成功发出，等待对方回应。";
 			else
 				str = "请求未能成功发出，未知错误。";

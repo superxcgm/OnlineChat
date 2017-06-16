@@ -1,14 +1,15 @@
 package xcbean;
 import java.sql.*;
+import java.util.*;
 
 public class MsgRecord extends SingleTable
 {
 	public static void main(String[] args)
 	{
-		System.out.println(MsgRecord.SystemMsg(MsgRecord.SYS_ADD_FRIEND, "1000000", "1000001"));
+		
 	}
 	/* variable length argument */
-	public static boolean SystemMsg(int type, String... arg)
+	public static boolean systemMsg(int type, String... arg)
 	{
 		boolean bAns = false;
 		XCDatabase xcDatabase = new XCDatabase();
@@ -38,6 +39,44 @@ public class MsgRecord extends SingleTable
 		}
 		xcDatabase.close();
 		return bAns;
+	}
+	public static String getMsg(XCUser user)
+	{
+		StringBuilder ans = new StringBuilder("");
+		XCDatabase xcDatabase = new XCDatabase();
+		xcDatabase.connect();
+		PreparedStatement pst;
+		ResultSet rs;
+		int msg_count = 0;
+		List<String> list = new LinkedList<>();
+		try{
+			pst = xcDatabase.prepareStatement(String.format("SELECT msg_id, msg_user_id_send, msg_type, msg_context, msg_time FROM %s WHERE msg_user_id_recv = ? AND msg_read = 0", tableName));
+			pst.setInt(1, user.getUser_id());
+			rs = pst.executeQuery();
+			while(rs.next()){
+				int send_id = rs.getInt("msg_user_id_send");
+				XCUser tmpUser = XCUser.find(XCUser.FIND_BY_ID, "" + send_id);
+				String split = "[superxc_split]";
+				String line_split = "[superxc_line_split]";
+				ans.append(send_id + split + tmpUser.getUser_nick() + split + rs.getInt("msg_type") + split + rs.getString("msg_context") + split + rs.getTimestamp("msg_time") + line_split);
+				list.add(rs.getInt("msg_id") + "");
+			}
+			if(list.size() > 0){
+				StringBuilder str = new StringBuilder("(");
+				int i = 0;
+				str.append(list.get(i++));
+				while(i < list.size())
+					str.append(", " + list.get(i++));
+				str.append(")");
+				// System.out.println(str);
+				pst = xcDatabase.prepareStatement(String.format("UPDATE %s SET msg_read = 1 WHERE msg_id IN " + str.toString(), tableName));
+				pst.executeUpdate();
+			}
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		xcDatabase.close();
+		return ans.toString();
 	}
 	public MsgRecord()
 	{

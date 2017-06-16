@@ -1,6 +1,7 @@
 // init
 var screenHeight;
 var screenWidth;
+window.setInterval(messageloop, 3000); 
 $(function(){
 	screenHeight = document.body.scrollHeight;
 	screenWidth = document.body.scrollWidth;
@@ -27,6 +28,7 @@ $(function(){
 		}
 	});
 	// $("#right>.msg-content").height(screenHeight - $("#right>.msg-sent").height() - $("#right>.msg-username").height());
+	// window.setTimeout(messageloop(), 1000);
 });
 function sendMsg(obj)
 {
@@ -93,4 +95,19 @@ function modifyInfo()
 function newfriend()
 {
 	$("#right").html('<iframe src="/newfriend/search" frameborder="0" style="width:100%; height: 100%;" name="right-frame"></iframe>');	
+}
+function messageloop()
+{
+	$.get("/getMsg", function(data){
+		if(!isNull(data)){
+			console.log(data);
+		}
+	});
+	// window.setTimeout(messageloop(), 1000);
+}
+function isNull( str ){
+	if ( str == "" ) return true;
+	var regu = "^[ ]+$";
+	var re = new RegExp(regu);
+	return re.test(str);
 }
