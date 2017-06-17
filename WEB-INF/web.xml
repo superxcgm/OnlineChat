@@ -168,7 +168,7 @@
     <servlet-name>getFriendCount</servlet-name>
     <url-pattern>/getFriendCount</url-pattern>
   </servlet-mapping>
-  <!-- getFriendList -->
+  
   <servlet>
     <servlet-name>getFriendList</servlet-name>
     <servlet-class>xcservlet.GetFriendList</servlet-class>
@@ -176,5 +176,14 @@
   <servlet-mapping>
     <servlet-name>getFriendList</servlet-name>
     <url-pattern>/getFriendList</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>sendMsg</servlet-name>
+    <servlet-class>xcservlet.SendMsg</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sendMsg</servlet-name>
+    <url-pattern>/sendMsg</url-pattern>
   </servlet-mapping>
 </web-app>

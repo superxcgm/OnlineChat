@@ -76,14 +76,53 @@ public class MsgRecord extends SingleTable
 		xcDatabase.close();
 		return ans.toString();
 	}
+	public static boolean sendMsg(int flag, XCUser user1, XCUser user2, String text)
+	{
+		boolean bAns = false;
+		switch(flag){
+			case FRIENT_MSG:
+				MsgRecord record = new MsgRecord(user1.getUser_id(), user2.getUser_id(), FRIENT_MSG, text);
+				if(record.update())
+					bAns = true;
+				break;
+		}
+		return bAns;
+	}
 	public MsgRecord()
 	{
 
 	}
+	public MsgRecord(int aMsg_user_id_send, int aMsg_user_id_recv, int aMsg_type, String aMsg_context)
+	{
+		setMsg_user_id_send(aMsg_user_id_send);
+		setMsg_user_id_recv(aMsg_user_id_recv);
+		setMsg_type(aMsg_type);
+		setMsg_context(aMsg_context);
+	}
+
+
 
 	public boolean update()
 	{
-		return false;
+		boolean bAns = false;
+		xcDatabase.connect();
+		PreparedStatement pst;
+		/* can not modify msg */
+		if(msg_id != -1)
+			return bAns;
+		try{
+			pst = xcDatabase.prepareStatement(String.format("INSERT INTO %s (msg_user_id_send, msg_user_id_recv, msg_type, msg_context) VALUES (?, ?, ?, ?)", tableName));
+			pst.setInt(1, msg_user_id_send);
+			pst.setInt(2, msg_user_id_recv);
+			pst.setInt(3, msg_type);
+			pst.setString(4, msg_context);
+			int ans = pst.executeUpdate();
+			if(ans > 0)
+				bAns = true;
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return bAns;
 	}
 	public boolean delete()
 	{
@@ -94,17 +133,17 @@ public class MsgRecord extends SingleTable
 	{
 		return msg_id;
 	}
-	public void setMsg_user_id_send(int aUser_id_send)
+	public void setMsg_user_id_send(int aMsg_user_id_send)
 	{
-		msg_user_id_send = aUser_id_send;
+		msg_user_id_send = aMsg_user_id_send;
 	}
 	public int getMsg_user_id_send()
 	{
 		return msg_user_id_send;
 	}
-	public void setMsg_user_id_recv(int aUser_id_recv)
+	public void setMsg_user_id_recv(int aMsg_user_id_recv)
 	{
-		msg_user_id_recv = aUser_id_recv;
+		msg_user_id_recv = aMsg_user_id_recv;
 	}
 	public int getMsg_user_id_recv()
 	{

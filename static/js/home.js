@@ -4,13 +4,17 @@ var screenWidth;
 var friend_count = -1;
 var mysplit = "[superxc_split]";
 var mylineSplit = "[superxc_line_split]";
+var msg_queue = new Array();
 window.setInterval(messageloop, 3000);
 window.setInterval(refreshFriendList, 3000); 
 String.prototype.format= function(){
-       var args = arguments;
-       return this.replace(/\{(\d+)\}/g,function(s,i){
-         return args[i];
-       });
+   var args = arguments;
+   return this.replace(/\{(\d+)\}/g,function(s,i){
+     return args[i];
+   });
+};
+function trim(str){ //删除左右两端的空格
+	return str.replace(/(^\s*)|(\s*$)/g, "");
 }
 var msg_item = '<div class="msg-item" onclick="{0}">\
 						<input type="hidden" class="userType" value="{1}">\
@@ -65,29 +69,60 @@ $(function(){
 	});
 	// $("#right>.msg-content").height(screenHeight - $("#right>.msg-sent").height() - $("#right>.msg-username").height());
 	// window.setTimeout(messageloop(), 1000);
+	messageloop();
+	refreshFriendList();
 });
 function sendMsg(obj)
 {
 	var userType = $("#right>.userType").val();
 	var userId = $("#right>.userId").val();
 	var content = $("#right>.msg-sent>textarea").val();
-	var msgItem = '\
-				<div class="msg-item">\
-					<div class="float-right">\
-						<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">\
-					</div>\
-					<div class="msg-detail float-right round">' + content + '</div>\
-				</div>';
-				// <div class="msg-item">
-				// 	<div class="float-left">
-				// 		<img src="../static/img/soccor-80-80.jpg" alt="" class="portrait">
-				// 	</div>
-				// 	<div></div>
-				// 	<div class="msg-detail float-left round">不在</div>
-				// </div>
-	var beforeHtml = $("#right>.msg-content").html();
-	$("#right>.msg-content").html(beforeHtml + msgItem);
+
+	// var beforeHtml = $("#right>.msg-content").html();
+	// $("#right>.msg-content").html(beforeHtml + msgItem);
+	
+	var tmp = 'u' + userId;
+	var username = trim($("#right>.msg-username").html() + "");
+	msg_queue[tmp] = msg_queue[tmp] + "0" + mysplit + content + mylineSplit;
 	$("#right>.msg-sent>textarea").val("");
+	/* update msg-list */
+	if($("#msg-list>.msg-item>.userId[value='" + userId + "']").length == 0){
+		$("#msg-list").html(msg_item.format('chat(this)', '', userId, "", username, content) + $("#msg-list").html());
+	}else{
+		$("#msg-list>.msg-item>.userId[value='" + userId + "']").siblings(".right-panel").children(".text-content").html(content);
+	}
+	/* 1 stands for friend msg */
+	$.post('/sendMsg', {type: "1", user_recv: userId, text: content});
+	refreshMsgContent(userId);
+}
+function refreshMsgContent(uid)
+{
+	var msgItem = '<div class="msg-item">\
+					<div class="float-{0}">\
+						<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait">\
+					</div>\
+					<div class="msg-detail float-{0} round">{1}</div>\
+				</div>';
+	/* {0} left or right */
+	var tmp = 'u' + uid;
+	// console.log(msg_queue[tmp]);
+	if(msg_queue[tmp] == undefined){
+		msg_queue[tmp] = '';
+	}
+	// console.log(msg_queue[tmp]);
+	var resultStr = '';
+	var line = (msg_queue[tmp]).split(mylineSplit);
+	for(i = 0; i < line.length; ++i){
+		if(!isNull(line[i])){
+			var ele = line[i].split(mysplit);
+			if(ele[0] == "0"){
+				resultStr = resultStr + msgItem.format("right", ele[1]);
+			}else{
+				resultStr = resultStr + msgItem.format("left", ele[1]);
+			}
+		}
+	}
+	$("#right>.msg-content").html(resultStr);
 }
 function chat(obj)
 {
@@ -116,9 +151,11 @@ function chat(obj)
 	$("#right>.userType").val(userName);
 	$("#right>.userId").val(userId);
 
+	refreshMsgContent(userId);
+
 	$("#right>.msg-sent>textarea").keydown(function(event){
 		/* Enter */
-		console.log(event.keyCode);
+		// console.log(event.keyCode);
 		if(event.keyCode == 13){
 			sendMsg();
 		}
@@ -157,7 +194,22 @@ function messageloop()
 					var ele = (list[i]).split(mysplit);
 					switch(ele[2]){
 						case "2": /* system message add friend */
-							$("#msg-list").html($("#msg-list").html() + msg_item.format('confirm_Add(this,' + ele[0] + ',\''+ ele[1] +'\')', '', '', ele[4],'系统消息', "新朋友请求"));
+							$("#msg-list").html(msg_item.format('confirm_Add(this,' + ele[0] + ',\''+ ele[1] +'\')', '', '', ele[4],'系统消息', "新朋友请求") + $("#msg-list").html());
+							break;
+						case "1":
+							/* if chat already exist, just modify msg, otherwise insert into it */
+							if($("#msg-list>.msg-item>.userId[value='" + ele[0] + "']").length == 0){
+								$("#msg-list").html(msg_item.format('chat(this)', '', ele[0], ele[4], ele[1], ele[3]) + $("#msg-list").html());
+							}else{
+								$("#msg-list>.msg-item>.userId[value='" + ele[0] + "']").siblings(".right-panel").children(".text-content").html(ele[3]);
+							}
+							var tmp = 'u' + ele[0];
+							// console.log(msg_queue[tmp]);
+							if(msg_queue[tmp] == undefined){
+								msg_queue[tmp] = '';
+							}
+							msg_queue[tmp] = msg_queue[tmp] + "1" + mysplit + ele[3] + mylineSplit;
+							refreshMsgContent(ele[0]);
 							break;
 					}
 				}
