@@ -45,9 +45,9 @@ var contact_item = '<div class="contact-item"  onclick="chat(this)">\
 $(function(){
 	screenHeight = document.body.scrollHeight;
 	screenWidth = document.body.scrollWidth;
-	$("#left").height(screenHeight);	
-	$("#right").height(screenHeight);	
-	$("#right").outerWidth(screenWidth - $("#left").outerWidth());
+	// $("#left").height(screenHeight);	
+	// $("#right").height(screenHeight);	
+	// $("#right").outerWidth(screenWidth - $("#left").outerWidth());
 	$("#cUserInfo>.option").click(function(){
 		if($("#cUserInfo>.option>.option-panel").css("display") == "none")
 			$("#cUserInfo>.option>.option-panel").css("display", "block");
@@ -76,11 +76,12 @@ function sendMsg(obj)
 {
 	var userType = $("#right>.userType").val();
 	var userId = $("#right>.userId").val();
-	var content = $("#right>.msg-sent>textarea").val();
+	var content = trim($("#right>.msg-sent>textarea").val());
 
 	// var beforeHtml = $("#right>.msg-content").html();
 	// $("#right>.msg-content").html(beforeHtml + msgItem);
-	
+	if(content.length == 0)
+		return;
 	var tmp = 'u' + userId;
 	var username = trim($("#right>.msg-username").html() + "");
 	msg_queue[tmp] = msg_queue[tmp] + "0" + mysplit + content + mylineSplit;
@@ -128,7 +129,7 @@ function chat(obj)
 {
 	var userType = $(obj).children(".userType").val();
 	var userId = $(obj).children(".userId").val(); 
-	var userName = $(obj).find(".nickname").text().trim();
+	var userName = trim($(obj).find(".nickname").text());
 	// console.log(userType);
 	// console.log(userId);
 	// console.log(userName);
@@ -146,7 +147,7 @@ function chat(obj)
 				<button class="btn btn-primary" style="width: 80px;" onclick="sendMsg(this)">发送</button>\
 			</div>';
 	$("#right").html(rightArea);
-	$("#right>.msg-content").height(screenHeight - $("#right>.msg-sent").height() - $("#right>.msg-username").height());
+	// $("#right>.msg-content").height(screenHeight - $("#right>.msg-sent").height() - $("#right>.msg-username").height());
 	$("#right>.msg-username").text(userName);
 	$("#right>.userType").val(userName);
 	$("#right>.userId").val(userId);

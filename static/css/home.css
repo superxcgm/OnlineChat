@@ -1,8 +1,11 @@
+html, body{
+	height: 100%;
+}
 #outer{
 	height: 100%;
 }
 #left{
-	width: 250px;
+	width: 20%;
 	height: 100%;
 	float: left;
 	color: #fff;
@@ -10,6 +13,8 @@
 }
 #right{
 	height: 100%;
+	width: 80%;
+	flex: 1;
 	float: left;
 }
 #logo{
@@ -65,10 +70,13 @@
 }
 #search-panel{
 	position: relative;
+	width: 90%;
+	margin: 0px auto;
 	padding-bottom: 15px;
 }
 #search-panel>input{
 	height: 30px;
+	width: 100%;
 	background-color: #096;
 	border-color: #096;
 }
@@ -81,6 +89,9 @@
 #menu .list-vertical>li{
 	border-right: 1px solid #096;
 	cursor: pointer;
+}
+#menu .list-vertical>li.active{
+	color: green;
 }
 #menu .list-vertical>li:last-child{
 	border-right: 0px;
@@ -117,7 +128,7 @@
 }
 #right>.msg-username
 {
-	height: 60px;
+	height: 8%;
 	line-height: 60px;
 	font-size: 18px;
 	border-bottom: 1px solid #ccc;
@@ -125,6 +136,7 @@
 #right>.msg-content
 {
 	/*padding: 10px;*/
+	height: 67%;
 	overflow-y:scroll;
 }
 #right>.msg-content>.msg-item
@@ -141,7 +153,7 @@
 }
 #right>.msg-sent
 {
-	height: 150px;
+	height: 25%;
 	width: 100%;
 	position: relative;
 }
