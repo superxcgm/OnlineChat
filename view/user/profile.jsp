@@ -2,7 +2,8 @@
 <jsp:useBean id="user" type="xcbean.XCUser" scope="request" />
 <%
 	// boolean isFriend = (boolean)request.getParameter("isFriend");
-	boolean isFriend = request.getAttribute("isFriend").equals("true");
+	boolean isFriend = (Boolean)request.getAttribute("isFriend");
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,7 @@
 	</script>
 </head>
 <body class="background-gray">
+	<!-- <%= request.getAttribute("isFriend") %> -->
 	<div id="outer">
 		<div class="portrait center">
 			<img src="/static/img/soccor-80-80.jpg" alt="" class="portrait-large" style="width:120px; height: 120px;">

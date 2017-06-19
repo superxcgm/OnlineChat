@@ -65,8 +65,9 @@ public class Friend extends SingleTable
 			pst = xcDatabase.prepareStatement(String.format("SELECT user_id_2 FROM %s WHERE user_id_1 = ?", tableName));
 			pst.setInt(1, user.getUser_id());
 			rs = pst.executeQuery();
-			if(rs.next()){
+			while(rs.next()){
 				XCUser tmpUser = XCUser.find(XCUser.FIND_BY_ID, "" + rs.getInt("user_id_2"));
+				// System.out.println(rs.getInt("user_id_2"));
 				sAns.append(rs.getInt("user_id_2") + split + tmpUser.getUser_nick() + line_split);
 			}
 		}catch(SQLException e){

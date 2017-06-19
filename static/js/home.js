@@ -32,7 +32,7 @@ var msg_item = '<div class="msg-item" onclick="{0}">\
 							</div>\
 						</div>\
 					</div>';
-var contact_item = '<div class="contact-item"  onclick="chat(this)">\
+var contact_item = '<div class="contact-item"  onclick="showProfile({0})">\
 						<input type="hidden" class="userType" value="0">\
 						<input type="hidden" class="userId" value="{0}">\
 						<div class="portrait">\
@@ -72,6 +72,10 @@ $(function(){
 	messageloop();
 	refreshFriendList();
 });
+function showProfile(uid)
+{
+	$("#right").html('<iframe src="/user/profile?id=' + uid + '" frameborder="0" style="width:100%; height: 100%;" name="right-frame"></iframe>');	
+}
 function sendMsg(obj)
 {
 	var userType = $("#right>.userType").val();
@@ -225,6 +229,7 @@ function refreshFriendList()
 		if(cnt != friend_count){
 			/* friend should sorted in server */
 			$.get("/getFriendList", function(data){
+				console.log(data);
 				var list = data.split(mylineSplit);
 				console.log(list);
 				$("#contact-list").html("");

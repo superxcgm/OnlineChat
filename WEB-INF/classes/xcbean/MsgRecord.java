@@ -11,33 +11,19 @@ public class MsgRecord extends SingleTable
 	/* variable length argument */
 	public static boolean systemMsg(int type, String... arg)
 	{
+
 		boolean bAns = false;
-		XCDatabase xcDatabase = new XCDatabase();
-		xcDatabase.connect();
-		PreparedStatement pst;
-		ResultSet rs;
 		switch(type){
 			case SYS_ADD_FRIEND:
 				/* do not check */
 				int user_id_send = Integer.parseInt(arg[0]);
 				int user_id_recv = Integer.parseInt(arg[1]);
-				XCUser user = XCUser.find(XCUser.FIND_BY_ID, user_id_send + "");
-				String str = String.format("%s(%d)想要添加您为好友。", user.getUser_nick(), user_id_send);
-				try{
-					pst = xcDatabase.prepareStatement(String.format("INSERT INTO %s (msg_user_id_send, msg_user_id_recv, msg_type, msg_context) VALUES (?, ?, ?, ?)", tableName));
-					pst.setInt(1, user_id_send);
-					pst.setInt(2, user_id_recv);
-					pst.setInt(3, SYS_ADD_FRIEND);
-					pst.setString(4, str);
-					int ans = pst.executeUpdate();
-					if(ans > 0)
-						bAns = true;
-				}catch(SQLException e){
-					System.out.println(e);
-				}
+
+				MsgRecord record = new MsgRecord(user_id_send, user_id_recv, SYS_ADD_FRIEND, "-");
+				if(record.update())
+					bAns = true;
 				break;
 		}
-		xcDatabase.close();
 		return bAns;
 	}
 	public static String getMsg(XCUser user)

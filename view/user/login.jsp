@@ -22,7 +22,7 @@
 		Talk. Talk. Talk!
 	</div>
 	<div id="body">
-		<div class="background-white round box-shadow" style="width: 400px; margin: 0px auto; padding: 30px;">
+		<div class="background-white round box-shadow" style="width: 35%; margin: 0px auto; padding: 30px;">
 			<div class="text-warning text-info"><%= strErr %></div>
 			<div style="padding-bottom: 40px;">
 				<form action="" method="post">

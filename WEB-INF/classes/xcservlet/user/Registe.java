@@ -64,7 +64,7 @@ public class Registe extends HttpServlet
 			pError(request, response, xcUser.getStrErr());
 			return ;
 		}
-		out.print("注册成功！");
+		pError(request, response, "success");
 	}
 	public void doGet(HttpServletRequest request,
 		HttpServletResponse response) throws IOException, ServletException
