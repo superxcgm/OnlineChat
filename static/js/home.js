@@ -92,7 +92,7 @@ function sendMsg(obj)
 	$("#right>.msg-sent>textarea").val("");
 	/* update msg-list */
 	if($("#msg-list>.msg-item>.userId[value='" + userId + "']").length == 0){
-		$("#msg-list").html(msg_item.format('chat(this)', '', userId, "", username, content) + $("#msg-list").html());
+		$("#msg-list").html(msg_item.format('chat(\'' + userId + '\',\'' + username + '\')', '', userId, "", username, content) + $("#msg-list").html());
 	}else{
 		$("#msg-list>.msg-item>.userId[value='" + userId + "']").siblings(".right-panel").children(".text-content").html(content);
 	}
@@ -129,11 +129,10 @@ function refreshMsgContent(uid)
 	}
 	$("#right>.msg-content").html(resultStr);
 }
-function chat(obj)
+function chat(userId, userName)
 {
-	var userType = $(obj).children(".userType").val();
-	var userId = $(obj).children(".userId").val(); 
-	var userName = trim($(obj).find(".nickname").text());
+	// var userId = $(obj).children(".userId").val(); 
+	// var userName = trim($(obj).find(".nickname").text());
 	// console.log(userType);
 	// console.log(userId);
 	// console.log(userName);
@@ -153,7 +152,7 @@ function chat(obj)
 	$("#right").html(rightArea);
 	// $("#right>.msg-content").height(screenHeight - $("#right>.msg-sent").height() - $("#right>.msg-username").height());
 	$("#right>.msg-username").text(userName);
-	$("#right>.userType").val(userName);
+	// $("#right>.userType").val(userName);
 	$("#right>.userId").val(userId);
 
 	refreshMsgContent(userId);
@@ -204,7 +203,7 @@ function messageloop()
 						case "1":
 							/* if chat already exist, just modify msg, otherwise insert into it */
 							if($("#msg-list>.msg-item>.userId[value='" + ele[0] + "']").length == 0){
-								$("#msg-list").html(msg_item.format('chat(this)', '', ele[0], ele[4], ele[1], ele[3]) + $("#msg-list").html());
+								$("#msg-list").html(msg_item.format('chat(\'' + ele[0] + '\',\'' + ele[1] + '\')', '', ele[0], ele[4], ele[1], ele[3]) + $("#msg-list").html());
 							}else{
 								$("#msg-list>.msg-item>.userId[value='" + ele[0] + "']").siblings(".right-panel").children(".text-content").html(ele[3]);
 							}

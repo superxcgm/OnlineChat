@@ -60,12 +60,14 @@
 		</div>
 		<%
 			if(isFriend){
-				out.print("<div class='center'>" +
-							"<button class='btn btn-primary btn-block' style='width: 50%'>发送信息</button>" +
-						"</div>");
-				out.print("<div class='center'>" +
-							"<button class='btn btn-warning btn-block' style='width: 50%'>删除</button>" +
-						"</div>");
+		%>
+				<div class='center'>
+					<button class='btn btn-primary btn-block' style='width: 50%' onclick='parent.chat("<jsp:getProperty name="user" property="user_id" />","<jsp:getProperty name="user" property="user_nick" />")'>发送信息<button>
+				</div>
+				<div class='center'>
+					<button class='btn btn-warning btn-block' style='width: 50%'>删除</button>
+				</div>
+		<%
 			}else{
 				out.print("<div class='center'>" +
 							"<button class='btn btn-primary btn-block' style='width: 50%' onclick='addFriend(" + user.getUser_id() + ")'>添加好友</button>" +
