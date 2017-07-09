@@ -27,3 +27,10 @@ OnlineChat
 [db.sql](db.sql)
 ### 食用方法：
 `mysql -h localhost -u$DBUSER -p$DBPASS < db.sql`
+## Preview
+![login](preview/login.jpg)
+![registe](preview/registe.jpg)
+![add_friend](preview/add_friend.jpg)
+![friend_profile](preview/friend_profile.jpg)
+![person_info](preview/person_info.jpg)
+![chat](preview/chat.jpg)
